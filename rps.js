@@ -1,5 +1,3 @@
-console.log("Hello World!");
-
 let humanScore = 0;
 let computerScore = 0;
 let continuePlaying = true;
@@ -15,15 +13,30 @@ while(continuePlaying) {
     //Tell the user the game is being played
     console.log("Rock\nPaper\nScissors\nShoot!\n");
 
-    //Show the choices and the winner
+    //Show the choices
     console.log(`You threw ${humanChoice}`);
     console.log(`The computer threw ${computerChoice}`);
-    
-    //Update the scores
 
+    //Show the winner and update the scores
+    if (winner == "Tie") {
+        console.log("You tied... :/");
+    } else if (winner == "Player") {
+        console.log(`You won! ${humanChoice} beats ${computerChoice.toLowerCase()}.`);
+        humanScore++;
+    } else {
+        console.log(`You lost. ${computerChoice} beats ${humanChoice.toLowerCase()}.`);
+        computerScore++;
+    }
+    
     //Display the scores
+    console.log(`Current scores:\nYou: ${humanScore}\nComputer: ${computerScore}`);
 
     //Ask the user if they want to play again
+    let playAgain = prompt("Would you like to play again (y/n)? ");
+
+    if (playAgain.toLowerCase === "n") {
+        continuePlaying = false;
+    }
 }
 
 function getComputerChoice() {
@@ -38,9 +51,10 @@ function getHumanChoice() {
     while(!validChoice) {
         //Prompt the user for their choice and store it in a variable
         let playerChoice = prompt("What do you want to throw (Rock, Paper, or Scissors)? ").toLowerCase();
+        
 
         //Verify that the user entered a valid option
-        if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+        if (playerChoice == "rock" || playerChoice == "paper" || playerChoice == "scissors") {
             //Capitalize the player's valid choice
             playerChoice = playerChoice.slice(0,1).toUpperCase() + playerChoice.slice(1);
         } else {
@@ -64,7 +78,7 @@ function getWinner(humanChoice, computerChoice) {
 
     //Evaluate ties
     if (humanChoice === computerChoice) {
-        result = "You tied... :/";
+        result = "Tie";
     //check for a winner
     } else {
         for (let i = 0; i < winCons.length; i++) {
@@ -72,11 +86,14 @@ function getWinner(humanChoice, computerChoice) {
             // wins. Otherwise, the computer wins.
             if (humanChoice == winCons[i][0]) {
                 if (computerChoice == winCons[i][1]) {
-                    result = `You won! ${humanChoice} beats ${computerChoice.toLowerCase()}.`
+                    result = "Player";
                 } else {
-                    result = `You lost. ${computerChoice} beats ${humanChoice.toLowerCase()}.`
+                    result = "Computer";
                 }
             }
         }
     }
+
+    //Return the result
+    return result;
 }
