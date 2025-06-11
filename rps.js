@@ -63,42 +63,12 @@ function getWinner(humanChoice, computerChoice) {
     return result;
 }
 
-function playRound(humanScore, computerScore) {
-    //Get the human and computer choices
-    let computerChoice = getComputerChoice();
-    let humanChoice = getHumanChoice();
-
-    //Determine the winner
-    let winner = getWinner(humanChoice, computerChoice);
-    
-    //Tell the user the game is being played
-    console.log("Rock\nPaper\nScissors\nShoot!\n");
-
-    //Show the choices
-    console.log(`You threw ${humanChoice}`);
-    console.log(`The computer threw ${computerChoice}`);
-
-    //Show the winner and update the scores
-    if (winner == "Tie") {
-        console.log("You tied... :/");
-    } else if (winner == "Player") {
-        console.log(`You won! ${humanChoice} beats ${computerChoice.toLowerCase()}.`);
-        humanScore++;
-    } else {
-        console.log(`You lost. ${computerChoice} beats ${humanChoice.toLowerCase()}.`);
-        computerScore++;
-    }
-    
-    //Display the scores
-    console.log(`Current scores:\nYou: ${humanScore}\nComputer: ${computerScore}`);
-}
-
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
     for (let i = 0; i < 5; i++) {
-        playRound(humanScore, computerScore);
+        playRound();
     }
 
     if (humanScore > computerScore) {
@@ -107,6 +77,36 @@ function playGame() {
         console.log("You lost to the machine. Better luck next time.");
     } else {
         console.log("Its a draw!")
+    }
+
+    function playRound() {
+        //Get the human and computer choices
+        let computerChoice = getComputerChoice();
+        let humanChoice = getHumanChoice();
+
+        //Determine the winner
+        let winner = getWinner(humanChoice, computerChoice);
+    
+        //Tell the user the game is being played
+        console.log("Rock\nPaper\nScissors\nShoot!\n");
+
+        //Show the choices
+        console.log(`You threw ${humanChoice}`);
+        console.log(`The computer threw ${computerChoice}`);
+
+        //Show the winner and update the scores
+        if (winner == "Tie") {
+            console.log("You tied... :/");
+        } else if (winner == "Player") {
+            console.log(`You won! ${humanChoice} beats ${computerChoice.toLowerCase()}.`);
+            humanScore++;
+        } else {
+            console.log(`You lost. ${computerChoice} beats ${humanChoice.toLowerCase()}.`);
+            computerScore++;
+        }
+    
+        //Display the scores
+        console.log(`Current scores:\nYou: ${humanScore}\nComputer: ${computerScore}`);
     }
 
 }
