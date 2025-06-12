@@ -67,10 +67,6 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    }
-
     if (humanScore > computerScore) {
         console.log("Congragulations! You won.");
     } else if (humanScore < computerScore) {
