@@ -9,7 +9,7 @@ function getComputerChoice() {
     return selection; 
 }
 
-function getHumanChoice() {
+/*function getHumanChoice() {
     let validChoice = false;
     let playerChoice;
     while(!validChoice) {
@@ -28,7 +28,7 @@ function getHumanChoice() {
     }
     //Return the user's valid selection
     return playerChoice;
-}
+}*/
 
 function getWinner(humanChoice, computerChoice) {
     //Declare a variable to store our result
@@ -67,6 +67,14 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
+    const rock = document.querySelector("#rock");
+    const paper = document.querySelector("#paper");
+    const scissors = document.querySelector("#scissors");
+
+    rock.addEventListener("click", playRound("Rock"));
+    paper.addEventListener("click", playRound("Paper"));
+    scissors.addEventListener("click", playRound("Scissors"));
+
     if (humanScore > computerScore) {
         console.log("Congragulations! You won.");
     } else if (humanScore < computerScore) {
@@ -75,10 +83,9 @@ function playGame() {
         console.log("Its a draw!")
     }
 
-    function playRound() {
+    function playRound(humanChoice) {
         //Get the human and computer choices
         let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();
 
         //Determine the winner
         let winner = getWinner(humanChoice, computerChoice);
