@@ -46,15 +46,12 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    const rock = document.querySelector("#rock");
-    const paper = document.querySelector("#paper");
-    const scissors = document.querySelector("#scissors");
+    const body = document.querySelector("body");
+
+    createButtons();
 
     const gameResults = document.createElement("div");
-
-    rock.addEventListener("click", playRound("Rock"));
-    paper.addEventListener("click", playRound("Paper"));
-    scissors.addEventListener("click", playRound("Scissors"));
+    body.appendChild(gameResults);
 
     /*if (humanScore > computerScore) {
         console.log("Congragulations! You won.");
@@ -93,4 +90,22 @@ function playGame() {
         console.log(`Current scores:\nYou: ${humanScore}\nComputer: ${computerScore}`);
     }
 
+    function createButtons() {
+        const rock = document.createElement("button");
+        const paper = document.createElement("button");
+        const scissors = document.createElement("button");
+
+        rock.textContent = "Rock";
+        paper.textContent = "Paper";
+        scissors.textContent = "Scissors";
+
+        rock.addEventListener("click", () => playRound("Rock"));
+        paper.addEventListener("click", () => playRound("Paper"));
+        scissors.addEventListener("click", () => playRound("Scissors"));
+
+        body.appendChild(rock);
+        body.appendChild(paper);
+        body.appendChild(scissors);
+    }
 }
+
