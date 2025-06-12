@@ -9,27 +9,6 @@ function getComputerChoice() {
     return selection; 
 }
 
-/*function getHumanChoice() {
-    let validChoice = false;
-    let playerChoice;
-    while(!validChoice) {
-        //Prompt the user for their choice and store it in a variable
-        playerChoice = prompt("What do you want to throw (Rock, Paper, or Scissors)? ").toLowerCase();
-        
-        //Verify that the user entered a valid option
-        if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
-            //Capitalize the player's valid choice
-            playerChoice = playerChoice.slice(0,1).toUpperCase() + playerChoice.slice(1);
-            //Update the sentinel value
-            validChoice = true;
-        } else {
-            console.log("That is not a valid option. Please select either rock, paper, or scissors.");
-        }
-    }
-    //Return the user's valid selection
-    return playerChoice;
-}*/
-
 function getWinner(humanChoice, computerChoice) {
     //Declare a variable to store our result
     let result;
