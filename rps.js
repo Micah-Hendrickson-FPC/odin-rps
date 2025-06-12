@@ -50,17 +50,19 @@ function playGame() {
     const paper = document.querySelector("#paper");
     const scissors = document.querySelector("#scissors");
 
+    const gameResults = document.createElement("div");
+
     rock.addEventListener("click", playRound("Rock"));
     paper.addEventListener("click", playRound("Paper"));
     scissors.addEventListener("click", playRound("Scissors"));
 
-    if (humanScore > computerScore) {
+    /*if (humanScore > computerScore) {
         console.log("Congragulations! You won.");
     } else if (humanScore < computerScore) {
         console.log("You lost to the machine. Better luck next time.");
     } else {
         console.log("Its a draw!")
-    }
+    }*/
 
     function playRound(humanChoice) {
         //Get the human and computer choices
@@ -70,11 +72,11 @@ function playGame() {
         let winner = getWinner(humanChoice, computerChoice);
     
         //Tell the user the game is being played
-        console.log("Rock\nPaper\nScissors\nShoot!\n");
+        gameResults.textContent = "Rock\nPaper\nScissors\nShoot!\n" + 
 
         //Show the choices
-        console.log(`You threw ${humanChoice}`);
-        console.log(`The computer threw ${computerChoice}`);
+        `You threw ${humanChoice}\n` + 
+        `The computer threw ${computerChoice}\n`;
 
         //Show the winner and update the scores
         if (winner == "Tie") {
