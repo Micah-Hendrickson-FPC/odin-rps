@@ -45,6 +45,7 @@ function getWinner(humanChoice, computerChoice) {
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
+    let WIN_CON = 5;
 
     const body = document.querySelector("body");
 
@@ -53,15 +54,11 @@ function playGame() {
     const gameResults = document.createElement("div");
     body.appendChild(gameResults);
 
-    /*if (humanScore > computerScore) {
-        console.log("Congragulations! You won.");
-    } else if (humanScore < computerScore) {
-        console.log("You lost to the machine. Better luck next time.");
-    } else {
-        console.log("Its a draw!")
-    }*/
-
     function playRound(humanChoice) {
+        while (gameResults.firstChild) {
+            gameResults.removeChild(gameResults.lastChild);
+        }
+
         //Get the human and computer choices
         let computerChoice = getComputerChoice();
 
@@ -69,25 +66,31 @@ function playGame() {
         let winner = getWinner(humanChoice, computerChoice);
     
         //Tell the user the game is being played
-        gameResults.textContent = "Rock\nPaper\nScissors\nShoot!\n" + 
+        output("Rock\nPaper\nScissors\nShoot!\n"); 
 
         //Show the choices
-        `You threw ${humanChoice}\n` + 
-        `The computer threw ${computerChoice}\n`;
+        output(`You threw ${humanChoice}.\n`); 
+        output(`The computer threw ${computerChoice}.\n`);
 
         //Show the winner and update the scores
         if (winner == "Tie") {
-            console.log("You tied... :/");
+            output("You tied... :/");
         } else if (winner == "Player") {
-            console.log(`You won! ${humanChoice} beats ${computerChoice.toLowerCase()}.`);
+            output(`You won! ${humanChoice} beats ${computerChoice.toLowerCase()}.`);
             humanScore++;
         } else {
-            console.log(`You lost. ${computerChoice} beats ${humanChoice.toLowerCase()}.`);
+            output(`You lost. ${computerChoice} beats ${humanChoice.toLowerCase()}.`);
             computerScore++;
         }
     
         //Display the scores
-        console.log(`Current scores:\nYou: ${humanScore}\nComputer: ${computerScore}`);
+        output(`Current scores:\nYou: ${humanScore}\nComputer: ${computerScore}`);
+
+        if (humanScore >= WIN_CON) {
+            output("Congragulations! You won.");
+        } else if (computerScore >= WIN_CON) {
+            output("You lost to the machine. Better luck next time.");
+        }
     }
 
     function createButtons() {
@@ -106,6 +109,12 @@ function playGame() {
         body.appendChild(rock);
         body.appendChild(paper);
         body.appendChild(scissors);
+    }
+
+    function output(text) {
+        const toOutput = document.createElement("p");
+        toOutput.textContent = text;
+        gameResults.appendChild(toOutput);
     }
 }
 
